@@ -37,22 +37,11 @@ class Dice_roller:
         new_value = None
         while not found:
             new_value = self.query()
-            found = self.counts[new_value] < (self.thresholds[new_value] - 1)
+            found = self.counts[new_value] <= (self.thresholds[new_value] - 1)
         self.counts[new_value] += 1        
         self.prev_rolls.append(new_value)
         return new_value
 
-my_dice = {}
-p = 0.5
-my_dice[0] = p
-my_dice[1] = 1-p
-my_roller = Dice_roller(my_dice, 10)
-print my_roller.prev_rolls
-print my_roller.counts
-for i in range(12):
-    my_roller.roll()
-    print my_roller.prev_rolls
-    print my_roller.counts
 
 
         

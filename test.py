@@ -4,15 +4,15 @@ from dice_dict import get_dice_dict_2_6
 
 
 def test_freq(dice_dict):
-    dr = Dice_roller(dice_dict, 10)
+    dr = Dice_roller(dice_dict, 20)
     results = dict()
     for x in dice_dict:
         results[x] = 0
     n_rolls = 10000
 
     for i in range(n_rolls):
-        x = dr.query()
-        # x = dr.roll()
+        #x = dr.query()
+        x = dr.roll()
         results[x] += 1
 
     print 'Observed frequencies:'
