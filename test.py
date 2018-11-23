@@ -1,5 +1,6 @@
 from __future__ import division
 from dice import Dice_roller
+from dice_dict import get_dice_dict_2_6
 
 
 def test_freq(dice_dict):
@@ -24,6 +25,6 @@ def test_freq(dice_dict):
 
 
 if __name__ == '__main__':
-    dice_dict = # TODO
+    dice_dict = get_dice_dict_2_6()
     test_freq(dice_dict)
 
