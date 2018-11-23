@@ -4,23 +4,28 @@ from dice_dict import get_dice_dict_2_6
 
 
 def test_freq(dice_dict):
-    dr = Dice_roller()
+    dr = Dice_roller(dice_dict, 10)
     results = dict()
     for x in dice_dict:
         results[x] = 0
     n_rolls = 10000
 
     for i in range(n_rolls):
-        x = dr.roll()
+        x = dr.query()
+        # x = dr.roll()
         results[x] += 1
 
     print 'Observed frequencies:'
     for x in dice_dict:
-        of = results[x] / n_rolls
-        f = dice_dict[x]
-        print 'p({:d}) = {:.4f} (should be {:.4f})'.format(
-            x, of, f)
-        if abs(f - of) > 10 / n_rolls:
+        of = results[x] / n_rolls    # observed frequency
+        f = dice_dict[x]    # ideal frequency
+        # Std. dev. on observed frequency
+        sd = (f * (1 - f) / n_rolls)**0.5
+
+        print 'p({:d}) = {:.4f} (should be {:.4f} +/- {:.4f})'.format(
+            x, of, f, 3 * sd)
+
+        if abs(f - of) > 3 * sd:
             print '^ WARNING INNACCURACY'
 
 
