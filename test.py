@@ -1,11 +1,12 @@
 from __future__ import division
-import numpy as np
 from dice import Dice_roller
 
 
 def test_freq(dice_dict):
     dr = Dice_roller()
-    results = np.zeros(13)
+    results = dict()
+    for x in dice_dict:
+        results[x] = 0
     n_rolls = 10000
 
     for i in range(n_rolls):
@@ -13,7 +14,7 @@ def test_freq(dice_dict):
         results[x] += 1
 
     print 'Observed frequencies:'
-    for x in range(13):
+    for x in dice_dict:
         of = results[x] / n_rolls
         f = dice_dict[x]
         print 'p({:d}) = {:.4f} (should be {:.4f})'.format(
